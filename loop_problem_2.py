@@ -1,13 +1,20 @@
 import random
 import time
 
+# Defining functions
+
 def invalid_option():
     print("\nThat's not a valid option. How could you fail at something so simple? Just go home... I can't bear to look at you anymore......")
     exit()
 
+# Ask the user for their input [Y/N]
+
 user_input = str(input("Welcome to the dice game! Would you like to roll a dice? [Y/N]: ").lower())
 
 if user_input == "y":
+
+# while True loop for the program to run a 6 sided dice roll until the user says "no"
+
     while True:
         print("\nRolling the dice...")
         time.sleep(3)

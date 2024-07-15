@@ -1,9 +1,13 @@
 import random
 import time
 
+# Defining functions
+
 def invalid_option():
     print("\nThat's not a valid option. How could you fail at something so simple? Just go home... I can't bear to look at you anymore......")
     exit()
+
+# Defining counter variables
 
 counter_1 = 0
 counter_2 = 0
@@ -14,12 +18,17 @@ counter_6 = 0
 
 roll_counter = 600
 
+# Ask the user if they'd like to roll the dice [Y/N]
+
 user_input = str(input(f"Welcome to the dice game! Would you like to roll a dice {roll_counter} times? [Y/N]: ").lower())
 
 if user_input == "y":
     print("\nRolling the dice...")
     time.sleep(3)
-    for _ in range(roll_counter):
+
+# for loop for the program to run a 6 sided dice roll 600 times exactly
+
+    for x in range(roll_counter):
         roll = random.randint(1,6)
         if roll == 1:
             counter_1 += 1
@@ -38,6 +47,8 @@ elif user_input == "n":
     exit()
 else:
     invalid_option()
+
+# Printing results, then goodbye message
 
 print(f"\nNumber of times 1 was rolled: {counter_1} \nPercentage is {(counter_1/600)*100}%")
 print(f"\nNumber of times 2 was rolled: {counter_2} \nPercentage is {(counter_2/600)*100}%")

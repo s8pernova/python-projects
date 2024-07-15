@@ -1,6 +1,8 @@
 import time
 import random
 
+# Defining outcomes and functions
+
 def ineffective():
     print(f"\n...But it's not very effective against your {user_input}! You win!!")
     wait()
@@ -39,6 +41,8 @@ def invalid_option():
 
 print("Welcome to the ultimate Rock-Paper-Scissors tournament!")
 
+# The while True loop is for the whole game, which will loop until the user wins the game
+
 while True:
     time.sleep(4)
     print("\nYour opponent for this round is... THE CONSOLE!!")
@@ -52,6 +56,8 @@ while True:
     time.sleep(1.25)
     print("GO!!")
     time.sleep(1.25)
+
+# Section where the user and computer chooses their options
 
     user_input = int(input("\nChoose your fighter! [Rock (1) / Paper (2) / Scissors (3)]: "))
 
@@ -75,6 +81,8 @@ while True:
 
     print(f"\nYour opponent chose {computer_choice}!")
     time.sleep(2)
+
+# Section where the outcome of the game is determined. If the user wins, the game will break out of the loop and print "Thanks for playing!"
 
     if user_input == computer_choice:
         tie()

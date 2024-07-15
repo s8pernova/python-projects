@@ -1,10 +1,14 @@
 import random
 import time
 
+# Defining built-in variables the user cannot change
+
 points_to_win = 2
 opponent = "THE CONSOLE"
 user_score = 0
 opponent_score = 0
+
+# Defining functions
 
 def wait_2():
     time.sleep(2)
@@ -33,13 +37,17 @@ def lose():
 def tie():
     wait_2()
 
-outcomes = [[tie, lose, win], [win, tie, lose], [lose, win, tie]]
+outcomes = [[tie, lose, win], [win, tie, lose], [lose, win, tie]] #2D list of outcomes
+
+# Starting the game with print statements
 
 print("Welcome to the ultimate Rock-Paper-Scissors tournament V2!")
 wait_4()
 print(f"\nWhoever gets to {points_to_win} points first wins the tournament.")
 wait_4()
 print(f"\nYour opponent for this match is... {opponent}!!")
+
+# while True loop to make the game go on forever until someone gets to a certain amount of points. looking back I should've used a for loop, but it works just fine
 
 while True:
     wait_4()
@@ -54,17 +62,24 @@ while True:
 
     options = ["rock", "paper", "scissors"]
 
-    while True: # Originally I was going to use "try" and "except" but I couldn't find out how to make it work with the options list so I just used another while true loop
+# while True loop to house if/else statements that validate user input
+
+    while True:
         user_input = str(input("\nChoose your fighter! [Rock/Paper/Scissors]: ").lower())
 
         if user_input in options:
             break
+        elif user_input == "exit":
+            print("\nThen get out of here already.")
+            exit()
         else:
             invalid_option()
     
     opponent_input = str(random.choice(options)) # I was thinking about doing [comp_choice -1] like in the video, but I found that this also works really well for my program
 
     outcome = outcomes[options.index(user_input)][options.index(opponent_input)] # I did .index to make the user input work by typing in a str instead of 1, 2, or 3 for rock paper or scissors
+
+# if/else statement to house message that plays based on the decision on user and computer input
 
     if outcome != tie:
         print(f"\nYour opponent chose {opponent_input}!")
@@ -74,6 +89,8 @@ while True:
     wait_2()
     
     outcome()
+
+# Resonsive message that plays based on who is currently in the lead
 
     if user_score > opponent_score:
         lead_player = "You're"
@@ -85,6 +102,8 @@ while True:
         print(f"{lead_player} in the lead!")
 
     wait_2()
+
+# Responsive message that plays based on who won
 
     if user_score >= points_to_win:
         print("\nAnd it looks like you won the tournament!! Good job.")
