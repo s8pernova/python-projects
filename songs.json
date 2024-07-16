@@ -1,0 +1,34 @@
+{
+	"songlist": [
+		{
+			"title": "After Life",
+			"artist": "Ashe",
+			"year": 2018,
+			"rating_out_of_10": 7
+		},
+		{
+			"title": "Opaul",
+			"artist": "Freddie Dredd",
+			"year": 2018,
+			"rating_out_of_10": 8
+		},
+		{
+			"title": "Crazy",
+			"artist": "Gnarls Barkley",
+			"year": 2006,
+			"rating_out_of_10": 6
+		},
+		{
+			"title": "Roma Fade",
+			"artist": "Andrew Bird",
+			"year": 2016,
+			"rating_out_of_10": 6
+		},
+		{
+			"title": "Gooey",
+			"artist": "Glass Animals",
+			"year": 2014,
+			"rating_out_of_10": 6
+		}
+	]
+}
