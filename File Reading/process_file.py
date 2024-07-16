@@ -1,4 +1,3 @@
-# Import the csv file
 filename = "input_students.csv"
 
 # Check if the field in a line is empty. If yes, replace it with "???"
@@ -34,10 +33,7 @@ def process_file():
     # Close the file at the end
     file_ptr.close()
 
-
-# Not necessary, but change the name "process_file()" to "main()"
 def main():
     process_file()
 
-# Run everything
 main()

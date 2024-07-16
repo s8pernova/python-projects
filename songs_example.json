@@ -1,7 +1,34 @@
-{"songlist": [{"id": 1234, "title": "Soul Makossa", "artist": "Manu Dibango", "year": 1972},
-              {"id": 8930, "title": "Tubular Bells", "artist": "Mike Oldfield", "year": 1973},
-              {"id": 6797, "title": "After the Rain", "artist": "John Coltrane", "year": 1963},
-              {"id": 2345, "title": "Strawberry Letter 23", "artist": "The Brothers Johnson", "year": 1977},
-              {"id": 4837, "title": "The Age of Aquarius", "artist": "The 5th Dimension", "year": 1969}
-             ]
+{
+	"songlist": [
+		{
+			"id": 1234,
+			"title": "Soul Makossa",
+			"artist": "Manu Dibango",
+			"year": 1972
+		},
+		{
+			"id": 8930,
+			"title": "Tubular Bells",
+			"artist": "Mike Oldfield",
+			"year": 1973
+		},
+		{
+			"id": 6797,
+			"title": "After the Rain",
+			"artist": "John Coltrane",
+			"year": 1963
+		},
+		{
+			"id": 2345,
+			"title": "Strawberry Letter 23",
+			"artist": "The Brothers Johnson",
+			"year": 1977
+		},
+		{
+			"id": 4837,
+			"title": "The Age of Aquarius",
+			"artist": "The 5th Dimension",
+			"year": 1969
+		}
+	]
 }
