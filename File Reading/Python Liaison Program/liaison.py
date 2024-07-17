@@ -12,7 +12,6 @@ def receive_json_input():
     with open(file_input, "r") as file_ptr:
         outer_dictionary = json.load(file_ptr)
         list_of_songs = outer_dictionary.get("songlist")
-    print(f"The data type of the songs is called {type(list_of_songs)}.\n\nThe songs themselves are:\n{list_of_songs}")
     return list_of_songs
 
 # Ask user what song title they want to put in the list: who made it, when it was made, and what they'd rate it 1-10
