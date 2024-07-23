@@ -1,22 +1,15 @@
 # Program to access songs from json file, ask the user which one they want, then put their choice(s) in a csv file
+# A lot of the code that I used were from the links in the videos, and learning all of it is why I turned this assignment in kind of close to the deadline instead of way before, like I usually do
+# I put a comment for each term that wasn't directly presented in the video to explain it
 
-import time
+import time  # This module is purely for decorative purposes
 import json
-import random
-import csv
 
-file_input = "/home/achrunaway/Coding/Python/NOVA Python Course/File Reading/Python Liaison Program/songs.json"  # Testing out typing in the current working directory (CWD)
-file_output = "outputted_songs.csv"
-global chosen_playlist  # global to make sure that I can call this variable ANYWHERE, even outside of functions
+# Testing out typing in the current working directory (CWD)
+file_input = "/home/achrunaway/Coding/Python/NOVA Python Course/File Reading/Python Liaison Program/songs.json"
+file_output = "/home/achrunaway/Coding/Python/NOVA Python Course/File Reading/Python Liaison Program/playlist.csv"
+global chosen_playlist  # global to make sure that I can call this variable ANYWHERE, even outside of this function
 chosen_playlist = []
-
-# Read and return the current list of songs from the json file
-def receive_json_input():
-    # "with" to automatically close the file when it's done. I learned this from the links in the videos
-    with open(file_input, "r") as file_ptr:
-        outer_dictionary = json.load(file_ptr)
-        list_of_songs = outer_dictionary.get("songList")
-    return list_of_songs
 
 # Check if the field in a line is empty. If it is, then replace it with "???"
 def get_field_value(fields, index):
@@ -27,7 +20,7 @@ def print_song_list():
     global counter
     # enumerate() to count each iteration in "songList", starting from 1. I learned about this from links and it saves unnecessary code like saying counter = 1 and then counter += 1 for each loop
     for counter, song in enumerate(list_of_songs, starting_value):
-        # Avoiding boilerplate code by putting these variables in a function. The function will also check if the value in the keys are empty
+        # Avoiding boilerplate code by putting these variables in a function. The function will ALSO check if the value in the keys are empty
         title = get_field_value(song, "title")
         artist = get_field_value(song, "artist")
         year = get_field_value(song, "year")
@@ -35,15 +28,16 @@ def print_song_list():
 
         # Testing out the escape character '\"'
         print(f"{counter}. \"{title}\" by {artist}\n",
-            f"   Release Date: {year}\n",
-            f"   Overall Rating: {rating}\n")  # Not very responsive design because of the three spaces (if the counter goes to double digits, it will move the top section to the right by one, but the bottom will stay the same), but it's ok because this is a small program
+            f"  Release Date: {year}\n",
+            f"  Overall Rating: {rating}\n")  # Not very responsive design because of the two spaces (if the counter goes to double digits, it will move the top section to the right by one, but the bottom will stay the same), but it's ok because this is a small program
         time.sleep(0.1)  # Add a small time between songs to make it more obvious that the list is growing. Plus it looks nicer
 
 # Print out the list of songs from the json file, then ask the user what songs they want in their playlist
-def user_choice(list_of_all_songs):
+def user_choice():
     # Print all of the songs 
     print("Here are the songs:\n")
-    with open(file_input, "r") as file_ptr:
+    # Read and return the current list of songs from the json file. I found it easier to just combine it with the user_choice() function
+    with open(file_input, "r") as file_ptr:  # "with" to automatically close the file when it's done. I learned this from the links in the videos
         global outer_dictionary  # I just made every variable here global because I was too lazy to make it work with print_song_list() otherwise
         outer_dictionary = json.load(file_ptr)
         global list_of_songs
@@ -109,11 +103,6 @@ def user_choice(list_of_all_songs):
 
     return chosen_playlist
 
-# Store the chosen playlist into the csv file
-def send_csv_output():
-    with open(file_output, "w") as file_ptr:
-        pass
-
 # Bonus not in the videos: ask the user to give the playlist a name
 def name_playlist():
     while True:
@@ -136,10 +125,21 @@ def name_playlist():
             else:
                 print("...Let's try that again.\n")
 
+# Store the chosen playlist into the csv file
+def send_csv_output():
+    with open(file_output, "w") as file_ptr:
+        # Write the title and headers
+        file_ptr.write(f"{playlist_title}\n\nTitle,Artist,Year,Rating\n")
+        for song in chosen_playlist:  # Instead of writing "two_d_list", I just chose to link this for loop directly to the chosen_playlist, which saves me from having to write the whole "title = chosen_playlist[0][0]" and "artist = chosen_playlist[0][1]" thing
+            # I also found it more efficient to use the .join() method with the map() function because I learned that it can combine the iterables in a list and structure them in a way that csv files can understand (by putting commas in between each string)
+            song_line = ",".join(map(str, song)) + "\n"  # ALSO also, the "map" coverts everything into a string, so I don't have to do it manually (saving even more code space)
+            file_ptr.write(song_line)
+
 # Print a friendly lil confirmation message that the playlist was successfully created
 def confirmation_message():
     num_of_songs_chosen = len(chosen_playlist)
 
+    # Change the word "song" to singular or plural depending on the amount of songs in the playlist
     if num_of_songs_chosen == 1:
         song = "song"
     else:
@@ -148,9 +148,7 @@ def confirmation_message():
     print(f"\nConfirmed! Your new playlist titled \"{playlist_title}\" with {num_of_songs_chosen} {song} is now created!")
     
 def main():
-    list_all_songs = receive_json_input()
-    chosen_playlist = user_choice(list_all_songs)
-    print(f"\nDEBUGGER:\n{chosen_playlist}")  # TODO - delete later
+    chosen_playlist = user_choice()
     playlist_title = name_playlist()
     send_csv_output()
     confirmation_message()
@@ -159,3 +157,5 @@ def main():
 # Make sure main() doesn't run if it's an imported file; I learned that it's good practice
 if __name__ == "__main__":
     main()
+
+# Just a quick reflection but this project took so long and at one point I wanted to break my computer because of how annoying it was but I'm still proud of it. I'm gonna go work on module 9 now
