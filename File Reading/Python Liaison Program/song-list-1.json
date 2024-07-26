@@ -3,30 +3,35 @@
 		{
 			"title": "After Life",
 			"artist": "Ashe",
+			"id": 1234,
 			"year": 2018,
 			"ratingOutOf10": 7
 		},
 		{
 			"title": "Opaul",
 			"artist": "Freddie Dredd",
+			"id": 5678,
 			"year": 2018,
 			"ratingOutOf10": 8
 		},
 		{
 			"title": "Crazy",
 			"artist": "Gnarls Barkley",
+			"id": 9101,
 			"year": 2006,
 			"ratingOutOf10": 6
 		},
 		{
 			"title": "Roma Fade",
 			"artist": "Andrew Bird",
+			"id": 1121,
 			"year": 2016,
 			"ratingOutOf10": 6
 		},
 		{
 			"title": "Gooey",
 			"artist": "Glass Animals",
+			"id": 3141,
 			"year": 2014,
 			"ratingOutOf10": 6
 		}

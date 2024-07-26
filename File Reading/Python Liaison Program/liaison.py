@@ -5,9 +5,8 @@
 import time  # This module is purely for decorative purposes
 import json
 
-# Testing out typing in the current working directory (CWD)
-file_input = "/home/achrunaway/Coding/Python/NOVA Python Course/File Reading/Python Liaison Program/songs.json"
-file_output = "/home/achrunaway/Coding/Python/NOVA Python Course/File Reading/Python Liaison Program/playlist.csv"
+file_input = "song-list-1.json"
+file_output = "play-list-1.csv"
 global chosen_playlist  # global to make sure that I can call this variable ANYWHERE, even outside of this function
 chosen_playlist = []
 
@@ -23,11 +22,13 @@ def print_song_list():
         # Avoiding boilerplate code by putting these variables in a function. The function will ALSO check if the value in the keys are empty
         title = get_field_value(song, "title")
         artist = get_field_value(song, "artist")
+        id = get_field_value(song, "id")
         year = get_field_value(song, "year")
         rating = get_field_value(song, "ratingOutOf10")
 
         # Testing out the escape character '\"'
         print(f"{counter}. \"{title}\" by {artist}\n",
+            f"  Song ID: {id}\n",
             f"  Release Date: {year}\n",
             f"  Overall Rating: {rating}\n")  # Not very responsive design because of the two spaces (if the counter goes to double digits, it will move the top section to the right by one, but the bottom will stay the same), but it's ok because this is a small program
         time.sleep(0.1)  # Add a small time between songs to make it more obvious that the list is growing. Plus it looks nicer
@@ -75,6 +76,7 @@ def user_choice():
                         chosen_playlist.append([
                             dict_of_chosen_song["title"],
                             dict_of_chosen_song["artist"],
+                            dict_of_chosen_song["id"],
                             dict_of_chosen_song["year"],
                             dict_of_chosen_song["ratingOutOf10"]
                         ])
@@ -129,7 +131,7 @@ def name_playlist():
 def send_csv_output():
     with open(file_output, "w") as file_ptr:
         # Write the title and headers
-        file_ptr.write(f"{playlist_title}\n\nTitle,Artist,Year,Rating\n")
+        file_ptr.write(f"{playlist_title}\n\nTitle,Artist,ID,Year,Rating\n")
         for song in chosen_playlist:  # Instead of writing "two_d_list", I just chose to link this for loop directly to the chosen_playlist, which saves me from having to write the whole "title = chosen_playlist[0][0]" and "artist = chosen_playlist[0][1]" thing
             # I also found it more efficient to use the .join() method with the map() function because I learned that it can combine the iterables in a list and structure them in a way that csv files can understand (by putting commas in between each string)
             song_line = ",".join(map(str, song)) + "\n"  # ALSO also, the "map" coverts everything into a string, so I don't have to do it manually (saving even more code space)
@@ -158,4 +160,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# Just a quick reflection but this project took so long and at one point I wanted to break my computer because of how annoying it was but I'm still proud of it. I'm gonna go work on module 9 now
+# Just a quick reflection but this project took so long and at one point I wanted to break my computer because of how annoying it was but I'm still proud of it
